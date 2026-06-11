@@ -83,7 +83,7 @@ scare.Position = UDim2.new(0.5,0,0.5,0)
 scare.Size = UDim2.new(0.6,0,0.6,0)
 
 scare.BackgroundTransparency = 1
-scare.Image = "rbxassetid://93324350033796"
+scare.Image = "rbxassetid://100449016563501"
 scare.ImageTransparency = 1
 scare.ScaleType = Enum.ScaleType.Fit -- FIX quan trọng
 scare.ZIndex = 20
@@ -332,7 +332,7 @@ achievementGiver({
     Title = "Breakdown",
     Desc = "It reacts to sound and movement.",
     Reason = "Encountered Rage",
-    Image = "rbxassetid://93324350033796"
+    Image = "rbxassetid://100449016563501"
 })
 end) 
 		return
