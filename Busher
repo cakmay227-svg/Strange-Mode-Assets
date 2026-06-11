@@ -99,7 +99,7 @@ entity:SetCallback("OnSpawned", function()
 	-- Particle texture
 	for _, v in ipairs(att:GetDescendants()) do
 		if v:IsA("ParticleEmitter") then
-			v.Texture = "rbxassetid://73941171740869"
+			v.Texture = "rbxassetid://80888012455669"
 		end
 	end
 
@@ -182,7 +182,7 @@ achievementGiver({
     Title = "Overgrowth",
     Desc ="The bushes are not as empty as they seem.",
     Reason = "Encountered Busher",
-    Image = "rbxassetid://73941171740869"
+    Image = "rbxassetid://80888012455669"
 })
 end)
 
