@@ -98,7 +98,7 @@ entity:SetCallback("OnSpawned", function()
 	-- Particle texture
 	for _, v in ipairs(att:GetDescendants()) do
 		if v:IsA("ParticleEmitter") then
-			v.Texture = "rbxassetid://118803341412170"
+			v.Texture = "rbxassetid://129954960511798"
 		end
 	end
 
@@ -181,7 +181,7 @@ achievementGiver({
     Title = "Breeze of Death",
     Desc ="A gentle wind does not always bring peace.",
     Reason = "Encountered Breeze",
-    Image = "rbxassetid://118803341412170"
+    Image = "rbxassetid://129954960511798"
 })
 end)
 
@@ -256,7 +256,7 @@ scare.Position = UDim2.new(0.5,0,0.5,0)
 scare.Size = UDim2.new(0.6,0,0.6,0)
 
 scare.BackgroundTransparency = 1
-scare.Image = "rbxassetid://118803341412170"
+scare.Image = "rbxassetid://129954960511798"
 scare.ImageTransparency = 1
 scare.ScaleType = Enum.ScaleType.Fit -- FIX quan trọng
 scare.ZIndex = 20
