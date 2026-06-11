@@ -88,7 +88,11 @@ entity:SetCallback("OnSpawned", function()
 	-- Main sound
 	local playSound = rush:FindFirstChild("PlaySound")
 	if playSound and playSound:IsA("Sound") then
-		playSound.SoundId = "rbxassetid://117844824370453"
+		playSound.SoundId = "rbxassetid://86608136898838"
+		playSound.PlaybackSpeed = 1
+		playSound.EqualizerSoundEffect:Destroy() 
+		playSound.FlangeSoundEffect:Destroy()
+		playSound.TremoloSoundEffect:Destroy()
 	end
 
 	-- Particle texture
