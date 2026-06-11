@@ -257,7 +257,7 @@ scare.Position = UDim2.new(0.5,0,0.5,0)
 scare.Size = UDim2.new(0.6,0,0.6,0)
 
 scare.BackgroundTransparency = 1
-scare.Image = "rbxassetid://73941171740869"
+scare.Image = "rbxassetid://80888012455669"
 scare.ImageTransparency = 1
 scare.ScaleType = Enum.ScaleType.Fit -- FIX quan trọng
 scare.ZIndex = 20
