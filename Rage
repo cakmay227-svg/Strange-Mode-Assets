@@ -329,7 +329,7 @@ local achievementGiver = loadstring(game:HttpGet("https://raw.githubusercontent.
 
 ---====== Display achievement ======---
 achievementGiver({
-    Title = "Breakdowm",
+    Title = "Breakdown",
     Desc = "It reacts to sound and movement.",
     Reason = "Encountered Rage",
     Image = "rbxassetid://93324350033796"
