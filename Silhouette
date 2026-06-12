@@ -171,8 +171,8 @@ local achievementGiver = loadstring(game:HttpGet("https://raw.githubusercontent.
 
 ---====== Display achievement ======---
 achievementGiver({
-    Title = "Edge of Nothing",
-    Desc ="",
+    Title = "",
+    Desc = "",
     Reason = "Encountered Silhouette",
     Image = "rbxassetid://124392954668336"
 })
