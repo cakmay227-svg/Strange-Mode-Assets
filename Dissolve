@@ -1,0 +1,170 @@
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Workspace = game:GetService("Workspace")
+local Players = game:GetService("Players")
+
+local CurrentRooms = Workspace:WaitForChild("CurrentRooms")
+local LatestRoom = ReplicatedStorage:WaitForChild("GameData"):WaitForChild("LatestRoom")
+
+local MODEL_ID = 115367508697896
+
+local used = false
+local lockedRoom = nil
+local currentModel = nil
+local touchConnections = {}
+
+local function cleanup()
+	if currentModel then
+		currentModel:Destroy()
+		currentModel = nil
+	end
+
+	for _, c in ipairs(touchConnections) do
+		pcall(function()
+			c:Disconnect()
+		end)
+	end
+	touchConnections = {}
+end
+
+local function getRoom()
+	local roomName = tostring(LatestRoom.Value)
+	return CurrentRooms:FindFirstChild(roomName)
+end
+
+local function spawnModel(room)
+	if used or not room then return end
+	used = true
+
+	lockedRoom = room
+	cleanup()
+
+	local ok, objects = pcall(function()
+		return game:GetObjects("rbxassetid://" .. MODEL_ID)
+	end)
+
+	if not ok or not objects or not objects[1] then return end
+
+	local model = objects[1]
+	currentModel = model
+	model.Parent = Workspace
+	model.Name = "Dissolve"
+
+	-- FX wait
+	task.wait(0.1)
+
+	local rush = model:FindFirstChild("RushNew", true)
+	if not rush then return end
+
+	local att = rush:FindFirstChild("Attachment", true)
+	if not att then return end
+
+	-- remove extras
+	local footsteps = rush:FindFirstChild("Footsteps")
+	if footsteps then footsteps:Destroy() end
+
+	local playSound = rush:FindFirstChild("PlaySound")
+	if playSound and playSound:IsA("Sound") then
+		playSound.SoundId = "rbxassetid://81447473979215"
+		playSound.PlaybackSpeed = 0.9
+
+		pcall(function()
+		playSound.DistortionSoundEffect:Destroy()
+			playSound.EqualizerSoundEffect:Destroy()
+			playSound.FlangeSoundEffect:Destroy()
+			playSound.TremoloSoundEffect:Destroy()
+		end)
+	end
+
+	for _, v in ipairs(att:GetDescendants()) do
+		if v:IsA("ParticleEmitter") then
+			v.Texture = "rbxassetid://138467525377980"
+		end
+	end
+
+	local indicate = rush:FindFirstChild("indicate")
+	if indicate then indicate:Destroy() end
+
+	for _, v in ipairs(att:GetChildren()) do
+		if v:IsA("PointLight") then
+			v.Brightness = 2
+			v.Range = 15
+			v.Color = Color3.fromRGB(136,0,255)
+		end
+	end
+
+	for _, v in ipairs(model:GetDescendants()) do
+		if v:IsA("BasePart") then
+			v.Anchored = true
+			v.CanCollide = false
+		end
+	end
+
+	-- 🔥 FIX POSITION (ONLY LOCKED ROOM)
+	local entrance = lockedRoom:FindFirstChild("RoomEntrance", true)
+local exit = lockedRoom:FindFirstChild("RoomExit", true)
+
+local pos
+
+if entrance and exit and entrance:IsA("BasePart") and exit:IsA("BasePart") then
+	local a = entrance.Position
+	local b = exit.Position
+
+	pos = Vector3.new(
+		(a.X + b.X) / 2,
+		a.Y,
+		(a.Z + b.Z) / 2
+	)
+else
+	pos = lockedRoom:GetBoundingBox().Position
+end
+
+model:PivotTo(CFrame.new(pos + Vector3.new(0, 2.5, 0)))
+
+	-- touch kill
+	for _, v in ipairs(model:GetDescendants()) do
+		if v:IsA("BasePart") then
+			local conn = v.Touched:Connect(function(hit)
+				local char = hit.Parent
+				local hum = char and char:FindFirstChildOfClass("Humanoid")
+
+				if hum then
+					hum.Health = 0
+
+					local plr = Players:GetPlayerFromCharacter(char)
+					if plr then
+						local stats = ReplicatedStorage:FindFirstChild("GameStats")
+						if stats and stats:FindFirstChild("Player_" .. plr.Name) then
+							stats["Player_" .. plr.Name].Total.DeathCause.Value = "Dissolve"
+						end
+					end
+				end
+			end)
+
+			table.insert(touchConnections, conn)
+		end
+	end
+end
+
+-- spawn lần đầu
+spawnModel(getRoom())
+
+-- update room (SAFE)
+game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+	used = false
+	cleanup()
+	
+	if getgenv()._DISSOLVE_ALREADY_EXECUTED then
+    return
+end
+
+getgenv()._DISSOLVE_ALREADY_EXECUTED = true
+
+local achievementGiver = loadstring(game:HttpGet("https://raw.githubusercontent.com/Voor-Pr00/Achivements/refs/heads/main/Voorpr0"))()
+
+---====== Display achievement ======---
+achievementGiver({
+    Title = "Dissolving Presence",
+    Desc = "Reality around you starts to dissolve.",
+    Reason = "Encountered Dissolve",
+    Image = "rbxassetid://138467525377980"
+})
