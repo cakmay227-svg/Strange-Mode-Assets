@@ -1,0 +1,293 @@
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#000000'>[Strange Mode]: Script Succesfully Executed/Loaded.</font>")
+
+local caption = game.Players.LocalPlayer:WaitForChild("PlayerGui").MainUI.MainFrame.Caption
+caption.TextColor3 = Color3.fromRGB(189, 97, 255)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Strange Mode Actived!",true)
+wait(2)
+local caption = game.Players.LocalPlayer:WaitForChild("PlayerGui").MainUI.MainFrame.Caption
+caption.TextColor3 = Color3.fromRGB(153, 240, 255)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Suggested by Purple Timmy.",true)
+wait(2)
+local caption = game.Players.LocalPlayer:WaitForChild("PlayerGui").MainUI.MainFrame.Caption
+caption.TextColor3 = Color3.fromRGB(255, 115, 115)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Made by Guestly",true)
+wait(2)
+local caption = game.Players.LocalPlayer:WaitForChild("PlayerGui").MainUI.MainFrame.Caption
+caption.TextColor3 = Color3.fromRGB(164, 255, 156)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Enjoy the mode! :D",true)
+
+game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+
+-- Rage
+task.spawn(function() 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/cakmay227-svg/Strange-Mode-Assets/refs/heads/main/Rage"))() 
+end) 
+
+-- Freeze
+coroutine.wrap(function()
+    while true do
+        task.wait(90)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        local roll = math.random(1, 100)
+
+if roll <= 30 then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/cakmay227-svg/Strange-Mode-Assets/refs/heads/main/Freeze"))()
+else
+-- fuck
+end
+    end
+end)()
+
+-- A-800
+coroutine.wrap(function()
+    while true do
+        task.wait(200)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        local roll = math.random(1, 100)
+
+if roll <= 20 then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/cakmay227-svg/Strange-Mode-Assets/refs/heads/main/A-800"))()
+else
+-- fuck
+end
+    end
+end)()
+
+-- Barrage
+coroutine.wrap(function()
+    while true do
+        task.wait(240)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        local roll = math.random(1, 100)
+
+if roll <= 25 then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/cakmay227-svg/Strange-Mode-Assets/refs/heads/main/Barrage"))()
+else
+-- fuck
+end
+    end
+end)()
+
+-- Breeze
+coroutine.wrap(function()
+    while true do
+        task.wait(180)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        local roll = math.random(1, 100)
+
+if roll <= 60 then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/cakmay227-svg/Strange-Mode-Assets/refs/heads/main/Breeze"))()
+else
+-- fuck
+end
+    end
+end)()
+
+-- Busher
+coroutine.wrap(function()
+    while true do
+        task.wait(230)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        local roll = math.random(1, 100)
+
+if roll <= 35 then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/cakmay227-svg/Strange-Mode-Assets/refs/heads/main/Busher"))()
+else
+-- fuck
+end
+    end
+end)()
+
+-- Conjoinment
+coroutine.wrap(function()
+    while true do
+        task.wait(400)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        local roll = math.random(1, 100)
+
+if roll <= 30 then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/cakmay227-svg/Strange-Mode-Assets/refs/heads/main/Conjoinment"))()
+else
+-- fuck
+end
+    end
+end)()
+
+-- Depth
+coroutine.wrap(function()
+    while true do
+        task.wait(280)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        local roll = math.random(1, 100)
+
+if roll <= 45 then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/cakmay227-svg/Strange-Mode-Assets/refs/heads/main/Depth"))()
+else
+-- fuck
+end
+    end
+end)()
+
+-- Dissolve
+coroutine.wrap(function()
+    while true do
+        task.wait(320)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        local roll = math.random(1, 100)
+
+if roll <= 40 then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/cakmay227-svg/Strange-Mode-Assets/refs/heads/main/Dissolve"))()
+else
+-- fuck
+end
+    end
+end)()
+
+-- Grin
+coroutine.wrap(function()
+    while true do
+        task.wait(410)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        local roll = math.random(1, 100)
+
+if roll <= 10 then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/cakmay227-svg/Strange-Mode-Assets/refs/heads/main/Grin"))()
+else
+-- fuck
+end
+    end
+end)()
+
+-- Heatbite
+coroutine.wrap(function()
+    while true do
+        task.wait(370)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        local roll = math.random(1, 100)
+
+if roll <= 40 then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/cakmay227-svg/Strange-Mode-Assets/refs/heads/main/Heatbite"))()
+else
+-- fuck
+end
+    end
+end)()
+
+-- Hollow
+coroutine.wrap(function()
+    while true do
+        task.wait(340)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        local roll = math.random(1, 100)
+
+if roll <= 10 then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/cakmay227-svg/Strange-Mode-Assets/refs/heads/main/Hollow"))()
+else
+-- fuck
+end
+    end
+end)()
+
+-- Monoxide
+coroutine.wrap(function()
+    while true do
+        task.wait(460)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        local roll = math.random(1, 100)
+
+if roll <= 25 then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/cakmay227-svg/Strange-Mode-Assets/refs/heads/main/Monoxide"))()
+else
+-- fuck
+end
+    end
+end)()
+
+-- Nightmare Ambush
+coroutine.wrap(function()
+    while true do
+        task.wait(155)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        local roll = math.random(1, 100)
+
+if roll <= 25 then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/cakmay227-svg/Strange-Mode-Assets/refs/heads/main/Nightmare%20Ambush"))()
+else
+-- fuck
+end
+    end
+end)()
+
+-- Nightmare Eyes
+coroutine.wrap(function()
+    while true do
+        task.wait(75)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        local roll = math.random(1, 100)
+
+if roll <= 45 then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/cakmay227-svg/Strange-Mode-Assets/refs/heads/main/Nightmare%20Eyes"))()
+else
+-- fuck
+end
+    end
+end)()
+
+-- Quick
+coroutine.wrap(function()
+    while true do
+        task.wait(300)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        local roll = math.random(1, 100)
+
+if roll <= 30 then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/cakmay227-svg/Strange-Mode-Assets/refs/heads/main/Quick"))()
+else
+-- fuck
+end
+    end
+end)()
+
+-- Silhouette
+coroutine.wrap(function()
+    while true do
+        task.wait(20)
+        local roll = math.random(1, 9999)
+
+if roll == 1 then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/cakmay227-svg/Strange-Mode-Assets/refs/heads/main/Silhouette"))()
+else
+-- fuck
+end
+    end
+end)()
+
+-- Srash
+coroutine.wrap(function()
+    while true do
+        task.wait(190)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        local roll = math.random(1, 100)
+
+if roll <= 5 then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/cakmay227-svg/Strange-Mode-Assets/refs/heads/main/Srash"))()
+else
+-- fuck
+end
+    end
+end)()
+
+-- Tackle
+coroutine.wrap(function()
+    while true do
+        task.wait(500)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        local roll = math.random(1, 100)
+
+if roll <= 50 then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/cakmay227-svg/Strange-Mode-Assets/refs/heads/main/Tackle"))()
+else
+-- fuck
+end
+    end
+end)()
