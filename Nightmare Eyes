@@ -1,0 +1,213 @@
+local Workspace = game:GetService("Workspace")
+
+local CurrentRooms = Workspace:WaitForChild("CurrentRooms")
+local LatestRoom = game:GetService("ReplicatedStorage")
+	:WaitForChild("GameData")
+	:WaitForChild("LatestRoom")
+
+local MODEL_ID = 115367508697896
+local currentModel = nil
+
+local function getRandomFloor(room)
+	local floors = {}
+
+	for _, obj in ipairs(room:GetDescendants()) do
+		if obj:IsA("BasePart") and obj.Name == "Floor" then
+			table.insert(floors, obj)
+		end
+	end
+
+	if #floors == 0 then
+		return nil
+	end
+
+	return floors[math.random(1, #floors)]
+end
+
+local function getRandomPointInPart(part)
+	local cf = part.CFrame
+	local size = part.Size
+
+	local x = (math.random() - 0.5) * size.X
+	local z = (math.random() - 0.5) * size.Z
+
+	return (cf * CFrame.new(x, 0, z)).Position
+end
+
+local function loadModel()
+	local objs = game:GetObjects("rbxassetid://" .. MODEL_ID)
+
+	if not objs or #objs == 0 then
+		warn("getObjects fail")
+		return nil
+	end
+
+	local container = objs[1]
+
+	local model = container:FindFirstChildWhichIsA("Model", true) or container
+	container.Parent = nil
+
+	return model
+end
+
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+local player = Players.LocalPlayer
+local camera = workspace.CurrentCamera
+
+local DAMAGE = 100
+local INTERVAL = 0.5
+
+local targetModel = nil
+local lastDamageTime = 0
+
+-- lấy model vừa spawn (gắn từ spawn function)
+local function setTarget(model)
+	targetModel = model
+end
+
+-- raycast check nhìn
+local function isLookingAtModel()
+	if not targetModel then return false end
+
+	local origin = camera.CFrame.Position
+	local direction = camera.CFrame.LookVector * 1000
+
+	local params = RaycastParams.new()
+	params.FilterDescendantsInstances = {player.Character}
+	params.FilterType = Enum.RaycastFilterType.Blacklist
+
+	local result = workspace:Raycast(origin, direction, params)
+
+	if result and result.Instance then
+		return result.Instance:IsDescendantOf(targetModel)
+	end
+
+	return false
+end
+
+-- loop damage
+task.spawn(function()
+	while true do
+		task.wait(INTERVAL)
+
+		local char = player.Character
+		local hum = char and char:FindFirstChildOfClass("Humanoid")
+
+		if hum and isLookingAtModel() then
+			hum.Health = hum.Health - DAMAGE
+			if hum.Health <= 0 then
+			game.ReplicatedStorage.GameStats["Player_" .. player.Name]
+    .Total.DeathCause.Value = "Nightmare Eyes"
+    end
+		end
+	end
+end)
+
+local function spawnInRoom()
+	local room = CurrentRooms:FindFirstChild(LatestRoom.Value)
+	if not room then
+		warn("Room not found:", LatestRoom.Value)
+		return
+	end
+
+	local floor = getRandomFloor(room)
+	if not floor then
+		warn("No floor found")
+		return
+	end
+
+	local model = loadModel()
+	if not model then return end
+
+	model.Parent = Workspace
+	currentModel = model
+	targetModel = model
+	
+	local rush = model:FindFirstChild("RushNew", true)
+	if not rush then return end
+
+	local att = rush:FindFirstChild("Attachment", true)
+	if not att then return end
+
+	-- remove extras
+	local footsteps = rush:FindFirstChild("Footsteps")
+	if footsteps then footsteps:Destroy() end
+
+	local playSound = rush:FindFirstChild("PlaySound")
+	if playSound and playSound:IsA("Sound") then
+		playSound.SoundId = "rbxassetid://83095014681430"
+		playSound.PlaybackSpeed = 0.8
+
+		pcall(function()
+		playSound.DistortionSoundEffect:Destroy()
+			playSound.EqualizerSoundEffect:Destroy()
+			playSound.FlangeSoundEffect:Destroy()
+			playSound.TremoloSoundEffect:Destroy()
+		end)
+	end
+
+	for _, v in ipairs(att:GetDescendants()) do
+		if v:IsA("ParticleEmitter") then
+			v.Texture = "rbxassetid://93964517655476"
+		end
+	end
+
+	local indicate = rush:FindFirstChild("indicate")
+	if indicate then indicate:Destroy() end
+
+	for _, v in ipairs(att:GetChildren()) do
+		if v:IsA("PointLight") then
+			v.Brightness = 1
+			v.Range = 15
+			v.Color = Color3.fromRGB(255,255,255)
+		end
+	end
+
+	for _, v in ipairs(model:GetDescendants()) do
+		if v:IsA("BasePart") then
+			v.Anchored = true
+			v.CanCollide = false
+		end
+	end
+
+	local basePos = getRandomPointInPart(floor)
+
+	local _, size = model:GetBoundingBox()
+	local spawnY = floor.Position.Y + (floor.Size.Y / 2) + (size.Y * 0.35)
+
+	local finalPos = Vector3.new(basePos.X, spawnY, basePos.Z)
+
+	model:PivotTo(CFrame.new(finalPos))
+	setTarget(model)
+end
+
+spawnInRoom()
+
+	task.spawn(function()
+	game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+
+	if currentModel then
+		currentModel:Destroy()
+		currentModel = nil
+	end
+
+	targetModel = nil
+	
+	if getgenv()._NEYES_ALREADY_EXECUTED then
+    return
+end
+
+getgenv()._NEYES_ALREADY_EXECUTED = true
+
+local achievementGiver = loadstring(game:HttpGet("https://raw.githubusercontent.com/Voor-Pr00/Achivements/refs/heads/main/Voorpr0"))()
+
+---====== Display achievement ======---
+achievementGiver({
+    Title = "Nightmare Gaze",
+    Desc = "It sees you back.",
+    Reason = "Encountered Nightmare Eyes",
+    Image = "rbxassetid://93964517655476"
+})
+end) 
